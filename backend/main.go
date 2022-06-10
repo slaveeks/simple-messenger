@@ -7,6 +7,7 @@ import (
 )
 
 func main() {
+	// Connect to database
 	db.Connect()
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		log.Printf("Request on /")
