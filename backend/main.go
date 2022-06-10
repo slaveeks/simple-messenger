@@ -6,10 +6,14 @@ import (
 )
 
 func main() {
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		log.Printf("Request on /")
+	})
 	var port string
-	port = "8000"
+	port = ":8000"
+	log.Printf("Server listen on %s", port)
 	err := http.ListenAndServe(port, nil)
 	if err != nil {
-		log.Printf("Server listen on %s", port)
+		log.Fatal(err)
 	}
 }
