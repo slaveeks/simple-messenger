@@ -1,11 +1,13 @@
 package main
 
 import (
+	"github.com/slaveeks/simple-messenger/db"
 	"log"
 	"net/http"
 )
 
 func main() {
+	db.Connect()
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		log.Printf("Request on /")
 	})
