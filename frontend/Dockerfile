@@ -2,7 +2,7 @@ FROM node:16-alpine as frontend
 
 WORKDIR /usr/src/app
 
-COPY . ./
+COPY ./frontend ./
 
 RUN yarn install
 

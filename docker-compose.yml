@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  frontend:
+    ports:
+      - 3000:3000
+    build:
+      dockerfile: ./frontend/Dockerfile
+  backend:
+    ports:
+      - 8000:8000
+    build:
+      dockerfile: ./backend/Dockerfile
+  mongo:
+    image: mongo:5.0
+    ports:
+      - '27017:27017'
+    volumes:
+      - ./data:/data/db
+      - ./config:/data/configdb

@@ -2,13 +2,13 @@ FROM golang:1.18-alpine as build
 
 WORKDIR /app
 
-COPY go.mod ./
-COPY go.sum ./
+COPY ./backend/go.mod ./
+COPY ./backend/go.sum ./
 
 RUN go mod download
 
-COPY *.go ./
-COPY db/db.go ./db/
+COPY ./backend/*.go ./
+COPY ./backend/db/db.go ./db/
 
 RUN go build -o /server
 
