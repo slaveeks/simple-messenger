@@ -9,9 +9,9 @@ import (
 func main() {
 	// Connect to database
 	db.Connect()
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		log.Printf("Request on /")
-	})
+
+	http.HandleFunc("/login", login)
+	http.HandleFunc("/register", register)
 	var port string
 	port = ":8000"
 	log.Printf("Server listen on %s", port)
