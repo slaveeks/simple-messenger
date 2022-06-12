@@ -1,9 +1,12 @@
 import React from 'react';
+import Container from "./components/layouts/base/Container";
+import Header from "./components/layouts/base/Header";
 
 function App() {
   return (
-    <div className="App">
-    </div>
+    <Container>
+      <Header/>
+    </Container>
   );
 }
 
