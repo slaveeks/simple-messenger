@@ -6,10 +6,18 @@ jobs:
   eslint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - uses: stefanoeb/eslint-action@1.0.2
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js 16
+        uses: actions/setup-node@v1
         with:
-          files: frontend/
+          node-version: 16.13.1
+
+      - name: Run linter
+        run: |
+          cd frontend
+          yarn
+          yarn lint:no-fix
   golint:
     name: go lint
     runs-on: ubuntu-latest
