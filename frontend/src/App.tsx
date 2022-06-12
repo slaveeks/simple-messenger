@@ -5,7 +5,7 @@ import Header from './components/layouts/base/Header';
 /**
  * Makes the main page
  *
- * @returns {JSX.Element}
+ * @return {JSX.Element}
  */
 function App(): JSX.Element {
   return (

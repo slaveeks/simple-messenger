@@ -26,13 +26,13 @@ const HeaderStyled = styled.div<Props>`
 /**
  * Header component
  *
- * @param props {Props} - props of component
+ * @param {Props} props - props of component
  *
  * @return {React.FC<Props>}
  */
 const Header: React.FC<Props> = ({...props}) => {
   return (
-      <HeaderStyled {...props} />
+    <HeaderStyled {...props} />
   );
 };
 
