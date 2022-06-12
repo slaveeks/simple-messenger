@@ -17,7 +17,7 @@ jobs:
         run: |
           cd frontend
           yarn
-          yarn lint:no-fix
+          yarn lint
   golint:
     name: go lint
     runs-on: ubuntu-latest
