@@ -25,12 +25,14 @@ const ContainerStyled = styled.div<Props>`
 /**
  * Container component
  *
- * @param props - props of component
+ * @param props {Props} - props of component
+ *
+ * @return {React.FC<Props>}
  */
-const Container: React.FC<Props> = ({ ...props }) => {
-    return (
-        <ContainerStyled { ...props }/>
-    );
+const Container: React.FC<Props> = ({...props}) => {
+  return (
+      <ContainerStyled {...props}/>
+  );
 };
 
 export default Container;

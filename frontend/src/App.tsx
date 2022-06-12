@@ -1,8 +1,13 @@
 import React from 'react';
-import Container from "./components/layouts/base/Container";
-import Header from "./components/layouts/base/Header";
+import Container from './components/layouts/base/Container';
+import Header from './components/layouts/base/Header';
 
-function App() {
+/**
+ * Makes the main page
+ *
+ * @returns {JSX.Element}
+ */
+function App(): JSX.Element {
   return (
     <Container>
       <Header/>
