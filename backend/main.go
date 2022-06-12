@@ -12,8 +12,7 @@ func main() {
 
 	http.HandleFunc("/login", login)
 	http.HandleFunc("/register", register)
-	var port string
-	port = ":8000"
+	var port = ":8000"
 	log.Printf("Server listen on %s", port)
 	err := http.ListenAndServe(port, nil)
 	if err != nil {
