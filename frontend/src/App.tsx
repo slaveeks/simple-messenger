@@ -1,6 +1,7 @@
 import React from 'react';
 import Container from './components/layouts/base/Container';
 import Header from './components/layouts/base/Header';
+import client from './client/client';
 
 /**
  * Makes the main page
@@ -8,6 +9,7 @@ import Header from './components/layouts/base/Header';
  * @return {JSX.Element}
  */
 function App(): JSX.Element {
+  console.log(client.socket);
   return (
     <Container>
       <Header/>

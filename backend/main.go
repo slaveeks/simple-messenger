@@ -9,7 +9,7 @@ import (
 func main() {
 	// Connect to database
 	db.Connect()
-
+	http.HandleFunc("/ws", socketHandler)
 	http.HandleFunc("/login", login)
 	http.HandleFunc("/register", register)
 	var port = ":8000"
