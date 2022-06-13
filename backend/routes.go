@@ -9,14 +9,6 @@ import (
 
 var upgrader = websocket.Upgrader{}
 
-func login(w http.ResponseWriter, r *http.Request) {
-	log.Printf("Login")
-}
-
-func register(w http.ResponseWriter, r *http.Request) {
-	log.Printf("Register")
-}
-
 func reader(conn *websocket.Conn) {
 	for {
 		// read in a message

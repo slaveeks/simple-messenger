@@ -39,6 +39,6 @@ class Client {
   }
 }
 
-const client = new Client('ws://localhost:8000/ws');
+const client = new Client('ws://localhost:8000/api');
 
 export default client;
