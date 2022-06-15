@@ -9,7 +9,7 @@ import (
 func main() {
 	// Connect to database
 	db.Connect()
-	http.HandleFunc("/api", socketHandler)
+	http.HandleFunc("/", socketHandler)
 	var port = ":8000"
 	log.Printf("Server listen on %s", port)
 	err := http.ListenAndServe(port, nil)

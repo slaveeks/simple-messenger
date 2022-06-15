@@ -1,10 +1,11 @@
+import {Auth} from './types/auth';
+
 /**
  * Client websocket
  *
  */
 class Client {
   socket: WebSocket;
-
   /**
   * constructor description
   * @param  {string} url [description]
@@ -18,7 +19,9 @@ class Client {
     */
     this.socket.onopen = (e) => {
       console.log('[open] Connection with server opened');
-      this.socket.send('Hello server');
+      const authMessage = JSON.stringify({token: '123'} as Auth);
+
+      this.socket.send(authMessage);
     };
 
     /**
@@ -27,6 +30,10 @@ class Client {
     */
     this.socket.onmessage = function(e) {
       console.log(e.data);
+    };
+
+    this.socket.onclose = function(e) {
+      console.log('Connection closed!');
     };
   }
 
@@ -39,6 +46,6 @@ class Client {
   }
 }
 
-const client = new Client('ws://localhost:8000/api');
+const client = new Client('ws://localhost:8000/');
 
 export default client;

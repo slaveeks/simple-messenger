@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"encoding/json"
 	"github.com/gorilla/websocket"
 	"log"
 	"net/http"
@@ -17,10 +17,23 @@ func reader(conn *websocket.Conn) {
 			log.Println(err)
 			return
 		}
-		// print out that message for clarity
-		fmt.Println(string(p))
 
-		if err := conn.WriteMessage(messageType, p); err != nil {
+		var a = auth{}
+		// print out that message for clarity
+		json.Unmarshal(p, &a)
+
+		var message string
+
+		if a.Token == "321" {
+			message = "Authorized"
+		} else {
+			message = "No!"
+			b := []byte(message)
+			conn.WriteMessage(messageType, b)
+			conn.Close()
+		}
+		b := []byte(message)
+		if err := conn.WriteMessage(messageType, b); err != nil {
 			log.Println(err)
 			return
 		}
