@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/gorilla/websocket"
 	"log"
 	"net/http"
@@ -24,16 +25,16 @@ func reader(conn *websocket.Conn) {
 
 		var message string
 
-		if a.Token == "321" {
+		if a.Payload.Token == "321" {
 			message = "Authorized"
 		} else {
 			message = "No!"
 			b := []byte(message)
+			fmt.Println(a)
 			conn.WriteMessage(messageType, b)
 			conn.Close()
 		}
-		b := []byte(message)
-		if err := conn.WriteMessage(messageType, b); err != nil {
+		if err := conn.WriteMessage(messageType, p); err != nil {
 			log.Println(err)
 			return
 		}

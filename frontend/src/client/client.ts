@@ -1,8 +1,6 @@
-import {ApiRequest} from "./types";
-import {AuthRequest} from "./types/requests/auth";
-import {RequestMessage} from "./types/base/message";
-import {json} from "stream/consumers";
-import {nanoid} from "nanoid";
+import {ApiRequest} from './types';
+import {RequestMessage} from './types/base/message';
+import {nanoid} from 'nanoid';
 
 /**
  * Client websocket
@@ -10,6 +8,7 @@ import {nanoid} from "nanoid";
  */
 class Client<ApiRequest extends RequestMessage<unknown>> {
   socket: WebSocket;
+
   /**
   * constructor description
   * @param  {string} url [description]
@@ -18,15 +17,12 @@ class Client<ApiRequest extends RequestMessage<unknown>> {
     this.socket = new WebSocket(url);
 
     /**
-    * constructor description
+    * Connection opening handler
     * @param  {Event} e [description]
     */
     this.socket.onopen = (e) => {
       console.log('[open] Connection with server opened');
-      const obj = { token: '123' }
-      const data = { payload: obj
-                      } as AuthRequest
-      this.send('authorize', {token: '123'});
+      this.send('authorize', {token: '321'});
     };
 
     /**
@@ -43,19 +39,26 @@ class Client<ApiRequest extends RequestMessage<unknown>> {
   }
 
   /**
-  * constructor description
-  * @param  {ApiRequest['type']} type - request type
-  * @param  {ApiRequest['payload']} payload - request payload
+  * Send message
+  *
+  * @template ApiRequest
+  * @param {ApiRequest} type - request type
+  * @param {ApiRequest} payload - request payload
   */
   public send(type: ApiRequest['type'], payload: ApiRequest['payload']) {
     const message = JSON.stringify({
       messageId: Client.generateId(),
       type,
       payload,
-    } as ApiRequest)
+    } as ApiRequest);
     this.socket.send(message);
   }
 
+  /**
+   * Generate id
+   *
+   * @return {string} - generated id
+   */
   public static generateId() {
     return nanoid(10);
   }

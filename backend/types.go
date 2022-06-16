@@ -1,5 +1,9 @@
 package main
 
 type auth struct {
-	Token string `json:"token"`
+	MessageId string `json:"messageId"`
+	Payload   struct {
+		Token string `json:"token"`
+	} `json:"payload"`
+	Type string `json:"type"`
 }

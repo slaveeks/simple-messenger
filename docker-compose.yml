@@ -1,11 +1,11 @@
 version: "3"
 
 services:
-  frontend:
-    ports:
-      - 3000:3000
-    build:
-      dockerfile: ./frontend/Dockerfile
+  # frontend:
+  #   ports:
+  #     - 3000:3000
+  #   build:
+  #     dockerfile: ./frontend/Dockerfile
   backend:
     ports:
       - 8000:8000
