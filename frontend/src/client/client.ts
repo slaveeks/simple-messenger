@@ -1,10 +1,14 @@
-import {Auth} from './types/auth';
+import {ApiRequest} from "./types";
+import {AuthRequest} from "./types/requests/auth";
+import {RequestMessage} from "./types/base/message";
+import {json} from "stream/consumers";
+import {nanoid} from "nanoid";
 
 /**
  * Client websocket
  *
  */
-class Client {
+class Client<ApiRequest extends RequestMessage<unknown>> {
   socket: WebSocket;
   /**
   * constructor description
@@ -19,9 +23,10 @@ class Client {
     */
     this.socket.onopen = (e) => {
       console.log('[open] Connection with server opened');
-      const authMessage = JSON.stringify({token: '123'} as Auth);
-
-      this.socket.send(authMessage);
+      const obj = { token: '123' }
+      const data = { payload: obj
+                      } as AuthRequest
+      this.send('authorize', {token: '123'});
     };
 
     /**
@@ -39,13 +44,23 @@ class Client {
 
   /**
   * constructor description
-  * @param  {string} data [description]
+  * @param  {ApiRequest['type']} type - request type
+  * @param  {ApiRequest['payload']} payload - request payload
   */
-  public send(data: string) {
-    this.socket.send(data);
+  public send(type: ApiRequest['type'], payload: ApiRequest['payload']) {
+    const message = JSON.stringify({
+      messageId: Client.generateId(),
+      type,
+      payload,
+    } as ApiRequest)
+    this.socket.send(message);
+  }
+
+  public static generateId() {
+    return nanoid(10);
   }
 }
 
-const client = new Client('ws://localhost:8000/');
+const client = new Client<ApiRequest>('ws://localhost:8000/');
 
 export default client;
